@@ -1,2 +1,7 @@
-package app.redoge.restaurant.repository;public interface CategoryRepository {
+package app.redoge.restaurant.repository;
+
+import app.redoge.restaurant.entity.Category;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CategoryRepository extends JpaRepository<Category, Long> {
 }

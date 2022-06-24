@@ -6,22 +6,19 @@ import app.redoge.restaurant.entity.User;
 import app.redoge.restaurant.repository.RoleRepository;
 import app.redoge.restaurant.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * Implementation of {@link UserService} interface.
- *
- * @author Eugene Suleimanov
- * @version 1.0
- */
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserService {
 
     @Autowired
     private UserRepository userDao;
@@ -32,22 +29,21 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private PasswordEncoder bCryptPasswordEncoder;
 
-    public Boolean isValidUserData(User user){
-        Boolean isValid = false;
 
-        return isValid;
+    public Collection<? extends GrantedAuthority>  getAuthorizedUserRoles(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return authentication.getAuthorities();
     }
 
-    @Override
     public void save(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         Set<Role> roles = new HashSet<>();
-        roles.add(roleDao.getOne(1L));
+        roles.add(roleDao.findById(3L).orElse(null));
         user.setRoles(roles);
         userDao.save(user);
     }
 
-    @Override
+
     public User findByUsername(String username) {
         return userDao.findByUsername(username);
     }

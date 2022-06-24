@@ -40,6 +40,7 @@ public class SpringConfig implements WebMvcConfigurer {
         templateResolver.setApplicationContext(applicationContext);
 //        templateResolver.setPrefix("/WEB-INF/views/");
         templateResolver.setPrefix("classpath:/templates/");
+//        templateResolver.setPrefix("classpath:/");
         templateResolver.setSuffix(".html");
         return templateResolver;
     }
@@ -62,11 +63,10 @@ public class SpringConfig implements WebMvcConfigurer {
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://url");
-        dataSource.setUsername("name");
-        dataSource.setPassword("password");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/restaurant-hibernate");
+        dataSource.setUsername("redoge");
+        dataSource.setPassword("redoge1670");
         return dataSource;
     }
 
