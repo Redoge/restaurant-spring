@@ -7,6 +7,11 @@ import java.util.Set;
 @Table(name = "dish_category")
 public class Category {
 
+    public Category(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
