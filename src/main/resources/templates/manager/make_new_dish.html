@@ -8,32 +8,18 @@
     <title>Make new dish</title>
 </head>
 <body>
-<!--    <form th:method="POST" th:action="@{/manager/make-new-dish}" th:object="${dish}">-->
-<!--        <label for="name">Enter the name: </label>-->
-<!--        <input type="text" th:field="*{name}" name="name" id="name"/>-->
-<!--        <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>-->
-<!--        <label for="price">Enter price: </label>-->
-<!--        <input type="number" th:field="*{price}" name="price" id="price"/>-->
-<!--        <div style="color:red" th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Name Error</div>-->
-<!--        <label for="category">Choose category:</label> </label>-->
-<!--        <select id="category" th:field="*{category}" name="category" th:each="category : ${categories} ">-->
-<!--            <option th:value="${category}" th:text="${category.getName}"></option>-->
-<!--        </select>-->
-<!--        <div style="color:red" th:if="${#fields.hasErrors('category')}" th:errors="*{category}">Name Error</div>-->
-<!--        <button type="submit">Submit</button>-->
-<!--    </form>-->
-    <form th:method="POST" th:action="@{/manager/make-new-dish}">
+    <form th:method="POST" th:action="@{/manager/make-new-dish}" th:object="${dish}">
         <label for="name">Enter the name: </label>
-        <input type="text"name="name" id="name"/>
+        <input type="text" th:field="*{name}" name="name" id="name"/>
+        <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div><br/>
         <label for="price">Enter price: </label>
-        <input type="number"  name="price" id="price"/>
+        <input type="number" th:field="*{price}" name="price" id="price"/>
+        <div style="color:red" th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Name Error</div><br/>
         <label for="category">Choose category:</label> </label>
-        <select id="category" name="category" >
-            <option th:each="category : ${categories} " th:value="${category}" th:text="${category.getName}"></option>
+        <select id="category" th:field="*{categories}" name="category" >
+            <option th:each="category : ${allCategories} " th:value="${category.getId}" th:text="${category.getName}"></option>
         </select>
         <button type="submit">Submit</button>
     </form>
-
-
 </body>
 </html>

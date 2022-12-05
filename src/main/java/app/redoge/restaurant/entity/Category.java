@@ -1,29 +1,22 @@
 package app.redoge.restaurant.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.Set;
 
 @Entity
 @Table(name = "dish_category")
 public class Category {
-
-    public Category(Long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "name")
+    @Size(min = 2, max =20, message = "Category name should be between 3 and 20 characters")
     private String name;
 
-    @ManyToMany(mappedBy = "categories")
+    @OneToMany()
     private Set<Dish> dishes;
-
-    public Category() {
-    }
 
     public Long getId() {
         return id;
@@ -48,4 +41,6 @@ public class Category {
     public void setDishes(Set<Dish> dishes) {
         this.dishes = dishes;
     }
+
+    public Category getCategoryThis(){return this;}
 }

@@ -9,7 +9,6 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     @ManyToOne
     private Dish dish;
 
@@ -21,7 +20,7 @@ public class Order {
     private String address;
 
     @ManyToOne
-    private OrderStatus status;
+    private OrderStatus status = new OrderStatus(16, "New order");
 
     private double price;
 

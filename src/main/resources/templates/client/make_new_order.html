@@ -12,14 +12,13 @@
 <body>
 <header th:insert="pattern/client/nav.html :: header"></header>
     <form th:method="POST" th:action="@{/client/make-order}" th:object="${order}">
-        <label for="AllMenu">Name of the dish:</label>
-
-        <label for="count">Count:</label>
-
-        <label for="adress">Adress:</label>
-
-        <div align="center"><input type="submit">Submit</div>
-
+        <label for="dish_name">Name of the dish:</label><br>
+        <input type="text" name="dish" id="dish_name"><br>
+        <label for="count">Count:</label><br>
+        <input type="number" name="count" id="count"><br>
+        <label for="adress">Adress:</label><br>
+        <input type="text" name="adress" id="adress"><br>
+        <div><input type="submit">Submit</div>
     </form>
 </body>
 </html>

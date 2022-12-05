@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Make new order status</title>
+</head>
+<body>
+    <form th:method="POST" th:action="@{/manager/make-new-orderStatus}" th:object="${orderStatus}">
+        <label for="name">Enter the status name: </label>
+        <input type="text" th:field="*{name}" id="name"/>
+        <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
+        <br/>
+        <input type="submit" value="Add!"/>
+    </form>
+    <table border="1px">
+        <tr th:each="status: ${statuses}">
+            <td th:text="${status.name}"/>
+            <br/>
+        </tr>
+    </table>
+</body>
+</html>
